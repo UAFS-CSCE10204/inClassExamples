@@ -1,10 +1,59 @@
 package highscore;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class HighScore {
 	private User[] users;
+	private String filename;
 	
 	public HighScore() {
 		users = new User[5];
+		this.filename="users.dat";
+	}
+	
+	public void loadFile() {
+		FileInputStream inFile;
+		ObjectInputStream in;
+		
+		try {
+			inFile = new FileInputStream(this.filename);
+			in = new ObjectInputStream(inFile);
+			this.users = (User[]) in.readObject();
+			in.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveFile() {
+		FileOutputStream outFile;
+		ObjectOutputStream out;
+		
+		try {
+			outFile = new FileOutputStream(this.filename);
+			out = new ObjectOutputStream(outFile);
+			out.writeObject(users);
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void show() {

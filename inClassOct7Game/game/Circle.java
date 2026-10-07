@@ -25,6 +25,9 @@ public class Circle extends GameObject {
 	
 	public void update() {
 		this.setX(this.getX() + this.getSpeed());
+		if(this.getX()>800) {
+			this.setX(-100);
+		}
 	}
 	
 	public void render(Graphics g) {

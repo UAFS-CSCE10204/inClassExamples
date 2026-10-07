@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	public GamePanel(Dimension dim) {
 		this.dim=dim;
 		this.setBackground(Color.black);
-		this.timer = new Timer(30,this);
+		this.timer = new Timer(20,this);
 		circle = new Circle("Circle1",100,100,2,1,Color.red,50);
 	}
 	

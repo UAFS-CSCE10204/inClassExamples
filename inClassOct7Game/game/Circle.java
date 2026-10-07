@@ -24,10 +24,11 @@ public class Circle extends GameObject {
 	}
 	
 	public void update() {
-		
+		this.setX(this.getX() + this.getSpeed());
 	}
 	
 	public void render(Graphics g) {
-		
+		g.setColor(this.getColor());
+		g.fillOval(this.getX(), this.getY(), this.getSize(), this.getSize());
 	}
 }

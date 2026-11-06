@@ -14,9 +14,7 @@ public class Game extends JPanel implements Runnable{
 	public Dimension dim;
 	public boolean running;
 	public Thread gameLoop;
-	public Ball ball;
 	public Balls balls;
-	//public Player player;
 	
 	public Game() {}
 	
@@ -32,26 +30,20 @@ public class Game extends JPanel implements Runnable{
 		this.setPreferredSize(dim);
 		this.window.add(this);
 		this.setBackground(Color.black);
-		this.ball = new Ball(150,150,1,75,Color.blue);
 		this.balls = new Balls(width,height);
 		this.balls.init();
-		//this.player = new Player(400,500,3,100,Color.green);
-		//this.addKeyListener(player);
+		this.addKeyListener((Player) this.balls.objects[0]);
 		this.window.setVisible(true);
 		this.requestFocusInWindow();
 		this.start();
 	}
 	
 	public void update() {
-		ball.update();
 		this.balls.update();
-		//player.update();
 	}
 	
 	public void render(Graphics g) {
-		ball.render(g);
 		this.balls.render(g);
-		//player.render(g);
 	}
 	
 	@Override

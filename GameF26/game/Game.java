@@ -8,15 +8,13 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Game extends JPanel implements Runnable{
+public abstract class Game extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1544878978114485164L;
 	public JFrame window;
 	public Dimension dim;
 	public boolean running;
 	public Thread gameLoop;
-	public Ball ball;
-	public Ship ship;
-	
+
 	public Game() {}
 	
 	public Game(String title, int width, int height) {
@@ -31,23 +29,15 @@ public class Game extends JPanel implements Runnable{
 		this.setPreferredSize(dim);
 		this.window.add(this);
 		this.setBackground(Color.black);
-		this.ball = new Ball(150,150,1,75,Color.blue);
-		this.ship = new Ship(400,400,2);
-		this.addKeyListener(this.ship);
+		this.init();
 		this.window.setVisible(true);
 		this.requestFocusInWindow();
 		this.start();
 	}
 	
-	public void update() {
-		ship.update();
-		ball.update();
-	}
-	
-	public void render(Graphics g) {
-		ship.render(g);
-		ball.render(g);
-	}
+	public abstract void init();
+	public abstract void update();
+	public abstract void render(Graphics g);
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -77,9 +67,5 @@ public class Game extends JPanel implements Runnable{
 		this.gameLoop =  new Thread(this);
 		this.gameLoop.start();
 	}
-	
-	public static void main(String[] args) {
-		Game game = new Game("Game Fall 2026",800,640);
-		
-	}
+
 }

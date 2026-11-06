@@ -1,16 +1,17 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
 public class Balls {
-	RandomBall[] balls;
+	GameObject[] objects;
 	int height;
 	int width;
 	
 	public Balls(int width, int height) {
 		Random rnd = new Random();
-		this.balls = new RandomBall[rnd.nextInt(15)+4];
+		this.objects = new GameObject[rnd.nextInt(15)+2];
 		this.width=width;
 		this.height=height;
 	}
@@ -18,8 +19,10 @@ public class Balls {
 	public void init() {
 		int index;
 		
-		for(index=0;index<this.balls.length;index++){
-			this.balls[index] = new RandomBall(this.width,this.height);
+		this.objects[0] = new Player(400,400,2,50,Color.blue);
+		this.objects[1]= new Ball(150,150,5,60,Color.red);
+		for(index=2;index<this.objects.length;index++){
+			this.objects[index] = new RandomBall(this.width,this.height);
 		}
 		
 	}
@@ -27,8 +30,8 @@ public class Balls {
 	public void update() {
 		int index;
 		
-		for(index=0;index<this.balls.length;index++){
-			this.balls[index].update();
+		for(index=0;index<this.objects.length;index++){
+			this.objects[index].update();
 		}
 		
 	}
@@ -36,8 +39,8 @@ public class Balls {
 	public void render(Graphics g) {
 		int index;
 		
-		for(index=0;index<this.balls.length;index++){
-			this.balls[index].render(g);
+		for(index=0;index<this.objects.length;index++){
+			this.objects[index].render(g);
 		}
 		
 	}

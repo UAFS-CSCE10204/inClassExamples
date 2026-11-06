@@ -39,7 +39,7 @@ public class Ship extends GameObject implements KeyListener {
 	}
 	
 	public void loadImage() {
-		File imageFile = new File("images/ship4.png");
+		File imageFile = new File("images/ship1.png");
 		try {
 			this.image = ImageIO.read(imageFile);
 		} catch (IOException e) {
